@@ -1,0 +1,1 @@
+Work in progresss. Quick little side project to learn Rust. Currently working on how to use threads in Rust. Grade conversions are based on OUAC's conversion table. 
