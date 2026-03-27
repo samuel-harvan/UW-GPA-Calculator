@@ -1,7 +1,11 @@
 use rfd::FileDialog;
+use std::fs; 
+use std::io::{Error, ErrorKind}; // testing
+mod check_key; 
 
-//Note to self: consider switching to using threads to handle key inputs (kind of buggy right now)
 fn main() {
+
+    check_key::run_thread(); 
 
     loop {
 
@@ -9,19 +13,23 @@ fn main() {
 
         if let Some(file) = file { 
             println!("file path: {:?}", file); 
-            break; 
+            
+            let mut content = fs::read_to_string(file); 
+            //content = Err(Error::new(ErrorKind::InvalidInput, "fake error"));
+
+            match content { 
+                Ok(_content) => {
+                    break; 
+                }
+                Err(_) => {
+                    println!("Something went wrong when processing the file. Please try again or click q to quit.");
+                }
+            }
+
         } else { 
             println!("Something went wrong when processing the file. Please try again or click q to quit.");
-            let mut input = String::new(); 
-            std::io::stdin().read_line(&mut input).expect("Failed to read input");
-            let input = input.trim().to_lowercase(); 
-
-            if input == "q" { 
-                println!("Exiting the program...");
-                std::process::exit(0);
-            }
         }
-    }
 
+    }
 
 }
