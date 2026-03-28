@@ -1,6 +1,6 @@
 use std::thread; 
 
-pub fn run_thread() { 
+pub fn check_key() { 
     thread::spawn(|| {
         loop {
             let mut input = String::new(); 
