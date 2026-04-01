@@ -4,8 +4,8 @@ use std::io::{BufRead, BufReader};
 use std::io; 
 //use std::io::{Error, ErrorKind}; for testing purposes
 pub struct GradeEntry { 
-    credits: f32, 
-    grade: i32,
+    pub credits: f32, 
+    pub grade: f32,
 }
 
 pub fn find_grades() -> io::Result<Vec<GradeEntry>> {
@@ -44,9 +44,9 @@ pub fn find_grades() -> io::Result<Vec<GradeEntry>> {
 
             let elements = line.split_whitespace().collect::<Vec<&str>>();
 
-            let grade_info = GradeEntry {
+            let mut grade_info = GradeEntry {
                 credits: elements[4].parse::<f32>().unwrap_or(0.0),
-                grade: elements[5].parse::<i32>().unwrap_or(0), 
+                grade: elements[5].parse::<f32>().unwrap_or(0.0), 
             }; 
 
             grades.push(grade_info); 
