@@ -5,4 +5,6 @@ edition = "2024"
 
 [dependencies]
 io = "0.0.2"
+pdf-extract = "0.10.0"
 rfd = "0.17.2"
+tempfile = "3.27.0"

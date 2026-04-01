@@ -22,7 +22,7 @@ pub fn find_gpa(mut grades: Vec<GradeEntry>) -> f32 {
 
     let mut total_credits = 0.0; 
 
-    for mut class_mark in grades {
+    for class_mark in grades.iter_mut() {
 
         total_credits += class_mark.credits;
 
@@ -34,16 +34,16 @@ pub fn find_gpa(mut grades: Vec<GradeEntry>) -> f32 {
         }
     }
 
-    if (total_credits == 0.0) { 
+    if total_credits == 0.0 { 
             return 0.0; 
     }
 
-    for class_mark in &grades { 
+    for gpa_score in grades.iter() { 
 
-        total_gpa += class_mark.grade * class_mark.credits; 
-
-        total_gpa /= total_credits; 
+        total_gpa += gpa_score.grade * gpa_score.credits; 
     }
+
+    total_gpa /= total_credits; 
 
     return total_gpa; 
 
